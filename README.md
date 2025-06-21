@@ -113,3 +113,6 @@ This course includes practical lab exercises organized by day to help you apply 
 
 ## Exam Preparation
 This course is designed to prepare you for the RHCSA certification exam. Follow all the modules, complete the lab exercises, and review the additional resources to ensure you're well-prepared for the exam.
+
+## Additional_Media
+url https://drive.google.com/drive/folders/1mbsFxVWWrPAvg2ecdkXvbYsakU79t_M1
