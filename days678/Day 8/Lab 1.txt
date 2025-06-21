@@ -1,0 +1,12 @@
+Make sure you are connected to the Red Hat registry.
+
+Ensure that the system journal exists persistently.
+
+Copy the content of the journal to the folder /home/walhalla/logserver, and make sure that everything under /home/walhalla belongs to the user walhalla and group walhalla.
+
+Launch an rsyslog container in Podman with the following conditions:
+	The container is started as a rootless container by the user walhalla.
+	The container is named logserver.
+	The /home/walhalla/logserver directory on the host should be mapped to /var/log/journal in the container.
+
+The container must be configured to automatically start as a user unit systemd service at system boot.

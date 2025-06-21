@@ -1,0 +1,5 @@
+add a new 10GiB disk to your virtual machine
+
+. Create an LVM logical volume with the name lvdb and a size of 1 GiB. Also create the VG and PV that are required for this LV
+
+. Format this LV with the XFS filesystem and mount it persistently on/mounts/lvdb

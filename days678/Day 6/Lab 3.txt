@@ -1,0 +1,5 @@
+
+Configure your system to boot in a multi-user target by default 
+
+
+Persistently remove the options that hide startup messages while booting

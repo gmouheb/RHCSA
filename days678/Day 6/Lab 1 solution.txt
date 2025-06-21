@@ -1,0 +1,24 @@
+1-
+lsblk
+
+fdisk /dev/sdX
+g
+n
+enter
+enter
++1G
+t
+lvm
+w
+
+vgcreate vgdb /dev/sdX1
+lvcreate -l 255 -n lvdb /dev/vgdb
+lvs
+
+2-
+mkfs.xfs /dev/vgdb/lvdb
+mkdir /mounts/lvdb 
+vim /etc/fstab
+/dev/vgdb/lvdb /mounts/lvdb xfs defaults 0 0
+mount -a
+reboot

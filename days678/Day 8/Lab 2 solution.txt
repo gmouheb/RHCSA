@@ -1,0 +1,42 @@
+as user:
+loginctl enable-linger webmaster
+podman login registry
+
+
+
+
+
+podman search httpd
+podman pull HTTPD_IMAGE
+podman inspect HTTPD_IMAGE | grep -iA3 exposed  #look for 8080
+mkdir webserver
+podman run -d --name webserver -p 5000:8080 -v ~/webserver:/var/www/html:Z httpdImage
+echo “hello” > ~/webserver/index.html
+curl localhost:5000
+
+podman exec -it webserver bash
+curl localhost:8080
+
+
+
+
+mkdir -p .config/systemd/user
+cd .config/systemd/user
+podman generate systemd --name webserver --files --new
+vim container-webserver.service
+[Service]
+Restart=on-failure ⇒ Restart=always
+RestartSec=2s
+
+[Install]
+WantedBy=default.target multi-user.target
+systemctl --user daemon-reload
+systemctl --user enable --now container-webserver.service
+systemctl --user status container-webserver.service
+reboot
+
+
+
+
+journalctl | grep Podman 
+journalctl | grep container-webserver

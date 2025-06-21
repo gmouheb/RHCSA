@@ -1,0 +1,3 @@
+Write a script that works with arguments. If the argument one
+ is used, the script should create a file named /tmp/one. If the
+ argument two is used, the script should write "Hello world " to the journal with err priority

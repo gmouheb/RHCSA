@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+if [ $# -eq 0 ]; then
+    echo "No arguments provided. Please provide 'one' or 'two'."
+    exit 1
+fi
+
+
+if [ "$1" == "one" ]; then
+
+    touch /tmp/one
+    echo "File /tmp/one created."
+elif [ "$1" == "two" ]; then
+
+    logger -p err "Hello world"
+    echo "Message logged to journal with err priority."
+else
+    echo "Invalid argument. Please use 'one' or 'two'."
+    exit 1
+fi
+
+chmod +x script.sh
+./script.sh one
+
+./script.sh two

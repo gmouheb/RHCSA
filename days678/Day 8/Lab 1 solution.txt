@@ -1,0 +1,46 @@
+as user:
+loginctl enable-linger 
+podman login registry
+
+
+as root:
+vim /etc/systemd/journald.conf
+Storage=persistent
+reboot
+
+
+as root:
+mkdir /home/walhalla/logserver
+cp -a /var/log/journal/* /home/walhalla/logserver
+chown -R walhalla:walhalla /home/walhalla/logserver
+
+
+as user:
+podman search rsyslog
+podman pull RSYSLOG_IMAGE
+podman images
+podman run --name logserver -d -v ~/logserver:/var/log/journal:Z RSYSLOG_IMAGE
+
+
+mkdir -p .config/systemd/user
+cd .config/systemd/user
+podman generate systemd --name logserver --files --new
+vim container-logserver.service
+[Service]
+Restart=on-failure ⇒ Restart=always
+RestartSec=2s
+StartLimitBurst=300000
+
+[Install]
+WantedBy=default.target ⇒ WantedBy=multi-user.target default.target
+:wq
+
+systemctl --user daemon-reload
+systemctl --user enable --now container-logserver.service
+systemctl --user status container-logserver.service
+reboot
+
+as root:
+journalctl | grep container-logserver
+ssh walhalla@localhost
+systemctl --user status container-logserver.service

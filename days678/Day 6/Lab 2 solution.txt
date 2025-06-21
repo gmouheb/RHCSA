@@ -1,0 +1,33 @@
+1-
+lsblk
+stratis pool  labpool /dev/sdd
+stratis pool list
+stratis fs ceatre labpool myfiles 
+stratis fs ceatre labpool myprograms 
+
+2-
+mkdir /myfiles 
+mkdir /myprograms
+
+stratis fs list #pick the uuid of the fs
+or just use
+stratis fs list | awk '/programs/ { print $NF }' #display the last feild (the UUID)
+stratis fs list | awk '/programs/ { print $NF }' >>/etc/fstab
+stratis fs list | awk '/files/ { print $NF }' >>/etc/fstab
+vim /etc/fstab
+UUID=89ea34-...923  /myfiles 	xfs	x-systemd.requires=stratisd.service 0 0 
+UUID=89ea34-...923  /myfiles 	xfs	x-systemd.requires=stratisd.service 0 0 
+mount -a
+stratis fs list
+
+3-
+cp /etc/[acf]* /myfiles/ 
+ls /myfiles/
+
+4-
+stratis filesystem snapshot labpool myfiles myfiles-snap
+mkdir /myfiles-snap
+
+5-
+rm /myfiles/a* -f
+mount /dev/stratis/labpool/myfiles-snap /myfiles-snap

@@ -1,0 +1,6 @@
+1- 
+firewall-cmd --list-all
+
+firewall-cmd --add-service ftp --permanent
+
+firewall-cmd --list-all

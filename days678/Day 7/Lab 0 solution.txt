@@ -1,0 +1,13 @@
+vim /etc/ssh/sshd_config
+
+#PermitRootLogin prohibit-password  => PermitRootLogin yes
+#X11Forwarding no => #X11Forwarding yes
+
+systemctl restart sshd
+
+ssh root@localhost
+
+
+exit 
+
+ssh -X localhost gedit

@@ -1,0 +1,7 @@
+timedatectl status
+
+vim /etc/chrony.conf
+
+pool poo.ntp.org iburst
+systemctl restart chronyd
+chronyc sources

@@ -1,0 +1,10 @@
+Ensure you are connected to the Red Hat registry.
+
+Launch an httpd container in Podman with the following conditions:
+	The container is started as a rootless container by the user webmaster.
+	The container must be accessible on port 8080 of the host.
+	The container is named webserver.
+	The /home/webmaster/"er directory on the host must be mapped to /var/www/html in the container.
+	Create an index.html file under /home/webmaster/webserver with the message "hello" and then test connectivity to this file.
+
+The container must be configured to automatically start as a user unit systemd service at system boot.

@@ -1,0 +1,5 @@
+systemctlll set-defaullt multi-user.target
+
+vim /etc/defaullt/grub
+remove rhgb quite
+grub2-mkconfig -o /boot/grub2/grub.cfg

@@ -1,0 +1,24 @@
+1-
+vim /etc/httpd/conf/httpd.conf
+
+DocumentRoot "/var/www/html" #make sure it's like this
+
+<Directory "/var/www/html">  #make sure it's like this
+
+Listen 82
+
+
+2-
+
+mv /etc/hosts /var/www/html
+systemctl restart httpd
+
+journalctl | grep sealert
+
+sealert -l 64989-694.... | less
+semanage port -a -t http_port_t -p tcp 82
+ls -Z /var/www/html
+restorecon -Rv /var/www/html
+systemctl restart httpd
+
+

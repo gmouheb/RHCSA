@@ -1,0 +1,56 @@
+1-
+llsblk
+fdisk /dev/nvme0n2
+n
+p
+enter
+enter
++1G
+w
+#the privous commands will create a primary device with the name /dev/nvme0n2p1
+
+mkdir -p /mounts/files
+mkfs.ext4 /dev/nvme0n2p1
+blkid
+echo "UUID=23434f07-23...233" /mounts/files ext4 defaults 0 0">>/etc/fstab
+
+2-
+
+fdisk /dev/nvm0n1
+n
+e
+enter
+enter
+enter
+# the privous commands will create a extended device with the name /dev/nvme0n2p2
+p #printing
+n
+enter
+enter
++500M
+w
+# the privous commands will create a device with the name /dev/nvme0n2p5 with the size 500M
+mkdir /mounts/xfs
+mkfs.xfs -L myxfs /dev/nvme0n1p5
+echo "LABEL=myxfs  /mounts/xfs xfs defaults 0 0">>/etc/fstab
+
+
+
+3-
+fdisk /dev/nvm0n1
+n
+enter
+enter
++500M
+t
+swap
+p
+w
+# the privous commands will create a swap partion with the name /dev/nvme0n2p- with the size 500M
+mkswap /dev/nvme0np6
+echo "/dev/nvme0n2p6 none  swap defaults 0 0">>/etc/fstab
+
+
+
+findmnt --verify
+

@@ -1,0 +1,5 @@
+
+Configure the Apache web server to bind to port 82
+
+
+Use mv /etc/hosts /var/www/html/ and ensure that the file gets an SELinux context that makes it readable by the Apache web server

@@ -1,0 +1,8 @@
+
+Set up your SSH server in such a way that:
+
+ SSH offers services on port 22
+ User root is allowed to log in
+ Graphical sessions can be forwarded
+ Verify that X forwarding works from the SSH client
+To perform this lab, use localhost as the server address

@@ -1,0 +1,12 @@
+
+
+#Add 10GiB on your VM so you can do the LAB#
+
+. Create a primary partition with a size of 1 GiB. 
+  Format it with Ext4, and mount it persistently on /mounts/lab0, using its UUID 
+
+. Create an extended partition that includes all remaining disk space.
+   In this partition, create a 500MIB XFS partition and mount it persistently on /mounts/xfslab0, using the label myxfslab0
+
+
+.Create a 500MiB swap partition and mount it persistently

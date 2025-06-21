@@ -1,0 +1,32 @@
+1-
+On Client:
+vim /etc/hosts
+@IPADD nfsserver.local.com  nfsserver
+ssh student@nfsserver
+
+2-
+On Server:
+mkdir -p /home/ldap/ldapuser{1..9}
+
+3-
+On Server:
+dnf install -y nfs-utils
+vim /etc/exports
+/home/ldap 	*(rw,no_root_squash)
+
+systemctl enable --now nfs-server
+showmounts -e localhost
+for i in nfs mountd rpc-bind; do firewallld-cmd --add-service $i --permanent; done
+firewall-cmd --reload
+
+4-
+On Client:
+dnf install -y autofs
+vim /etc/auto.master
+/homes	/etc/auto.homes
+
+vim /etc/auto.homes
+
+*	-rw 	nfsserver:/home/ldap/&
+systemctll restart autofs
+cd /homes/ldapuser4

@@ -1,0 +1,8 @@
+
+To perform this lab it is recommended to use a second server with the name nfsserver. If that's not possible, configure the NFS server parts on localhost
+
+On nfsserver, create home directories /home/ldap/ldapuser1 .. Idapuser9
+
+Configure nfsserver to NFS export these home directories
+
+Automount the home directories on /homes/. The result should be that /homes/ldapusern is accessed, the corresponding directory from nfsserver is mounted

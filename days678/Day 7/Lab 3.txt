@@ -1,0 +1,4 @@
+
+Configure firewalld such that remote access to the SSH and
+
+FTP processes is allowed. Make sure the configuration is applied immediately as well as persistently

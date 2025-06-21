@@ -1,0 +1,4 @@
+vim /var/www/html/index.html
+Hello Guys
+chmod a+r /var/www/html/index.html
+curl http://localhost

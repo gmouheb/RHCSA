@@ -1,0 +1,24 @@
+sudo loginctl enable-linger student
+sudo loginctl show-user student
+mkdir mydb
+podman exec grep mysql /etc/password #id(nn) 999:999
+podman unshare chown 999:999 mydb/
+ls -ld mydb
+podman run -d -p 3206:3206 --name mydb -v /home/student/mydb:/var/lib/mysql:Z -e MYSQL_ROOT_PASSWORD=password docker.io/library/mariadb
+podman ps
+ls -l mydb/
+mkdir -p .config/systemd/user
+cd /config/systemd/user
+podman generate systemd --name mydb --files --new
+vim container-mydb.service
+[Service]
+Restart=on-failure ⇒ Restart=always
+RestartSec=2s
+[Install]
+WantedBy=default.target => WantedBy=multi-user.target default.target
+systemctl --user daemon-reload
+systemctl --user enable container-mydb.service
+sudo reboot
+don't login as student
+ps faux | less
+/student
